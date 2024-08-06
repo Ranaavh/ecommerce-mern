@@ -1,0 +1,32 @@
+/* login.css */
+.custom-checkbox .form-check-input {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #000; /* Customize the border color */
+  border-radius: 4px; /* Optional: Add border radius if desired */
+}
+
+.custom-checkbox .form-check-input:checked {
+  background-color: #000; /* Customize the background color when checked */
+  border-color: #000; /* Customize the border color when checked */
+}
+.signin-button {
+  width: 100%;
+  margin-bottom: 1rem;
+  border: none;
+  padding: 12px;
+  background-color: var(--primary-color);
+}
+.signin-button:hover {
+  background-color: var(--secondary-color);
+}
+.already-button {
+  width: 100%;
+  margin-bottom: 1rem;
+  border: none;
+  padding: 12px;
+  background-color: var(--secondary-color);
+}
+.already-button:hover {
+  background-color: var(--primary-color);
+}

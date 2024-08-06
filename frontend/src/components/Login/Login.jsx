@@ -47,7 +47,7 @@ function Login() {
             {/* Footer Buttons */}
             <Row>
               <Col className="footer-buttons">
-                <Button as={Link} to="/sign-in" className="create-button">
+                <Button as={Link} to="/signin" className="create-button">
                   Create Account
                 </Button>
                 <Button

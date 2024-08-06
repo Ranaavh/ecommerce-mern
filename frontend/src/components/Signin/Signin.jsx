@@ -15,50 +15,62 @@ function Signin() {
         <Breadcrumb.Item href="/" className="breadcrumb-link">
           Home
         </Breadcrumb.Item>
-        <Breadcrumb.Item active>Login</Breadcrumb.Item>
+        <Breadcrumb.Item active>Signin</Breadcrumb.Item>
       </Breadcrumb>
 
       {/* Heading */}
-      <h2 className="login-heading mb-5">Login</h2>
+      <h2 className="signin-heading mb-5">Create Account</h2>
 
       <Row className="form-col">
         <Col md={{ span: 6, offset: 3 }}>
           <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Full Name*</Form.Label>
+              <Form.Control placeholder="Enter Name" required />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email*</Form.Label>
               <Form.Control type="email" placeholder="Enter email" required />
             </Form.Group>
-
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Phone number*</Form.Label>
+              <Form.Control placeholder="Enter Phone Number" required />
+            </Form.Group>
             {/* Password Input */}
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password*</Form.Label>
               <Form.Control type="password" placeholder="Password" required />
             </Form.Group>
-
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Confirm Password*</Form.Label>
+              <Form.Control type="password" placeholder="Password" required />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+              <Form.Check
+                type="checkbox"
+                className="custom-checkbox"
+                label="I've read and accept the Privacy Policy"
+                required
+              />
+            </Form.Group>
             {/* Login Button */}
             <Button
               variant="primary"
               type="submit"
-              className="login-button mb-3"
+              className="signin-button mb-3"
             >
-              Login
+              Sign In
+            </Button>
+            <Button
+              variant="primary"
+              type="submit"
+              as={Link} to="/login"
+              className="already-button mb-3"
+            >
+              Already an Account?
             </Button>
 
-            {/* Footer Buttons */}
-            <Row>
-              <Col className="footer-buttons">
-                <Button as={Link} to="/signin" className="create-button">
-                  Create Account
-                </Button>
-                <Button
-                  as={Link}
-                  to="/forgot-password"
-                  className="forgot-button"
-                >
-                  Forgot Password?
-                </Button>
-              </Col>
-            </Row>
+            
           </Form>
         </Col>
       </Row>
