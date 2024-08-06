@@ -1,15 +1,28 @@
 /* Navbar.css */
+
+/* Dark theme for the top announcement bar */
 .navbar-dark {
   background-color: #343a40; /* Dark background for navbar */
 }
+
+/* Styling for the announcement text */
 .custom-brand {
   font-size: 1rem;
 }
+
+/* Main brand styling */
 .brand {
   font-size: 1.5rem;
   font-weight: 800;
+  color: rgb(71, 71, 71);
 }
 
+/* Color for the 'SITE' part of the brand */
+.brand span {
+  color: rgb(255, 112, 4);
+}
+
+/* Navbar links styling */
 .navbar-light .nav-link {
   color: #000000;
   font-size: 1rem;
@@ -17,6 +30,20 @@
   text-transform: uppercase;
 }
 
+/* Hover effect for navbar links */
 .nav-link:hover {
-  color: #8e9091;
+  color: var(--hover-color); /* Using CSS variable for hover color */
+}
+
+/* Remove blue background color on dropdown item hover */
+.navbar .dropdown-menu .dropdown-item:hover,
+.navbar .dropdown-menu .dropdown-item:focus {
+  background-color: transparent; /* Set to any preferred color */
+  color: inherit; /* Keep the text color */
+}
+
+/* Remove blue border or outline on focus */
+.navbar .dropdown-menu .dropdown-item:focus {
+  outline: none;
+  box-shadow: none;
 }

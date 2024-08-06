@@ -8,6 +8,8 @@ import WishlistPage from "./Pages/Wishlist/WishlistPage";
 import CheckoutPage from "./Pages/Checkout/CheckoutPage";
 import ContactPage from "./Pages/Contact/contact";
 import ShopPage from "./Pages/Shop/ShopPage";
+import Login from "./components/Login/Login";
+import Signin from "./components/Signin/Signin";
 
 const App = () => {
   return (
@@ -23,6 +25,8 @@ const App = () => {
             <Route path="/wishlist" element={<WishlistPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signin" element={<Signin />} />
           </Routes>
         </Container>
       </main>

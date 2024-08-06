@@ -1,0 +1,83 @@
+/* login.css */
+
+.container-login {
+  min-height: 100vh;
+}
+
+.form-col {
+  width: 70%;
+}
+.form-label {
+  font-weight: 600;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.login-heading {
+  text-align: center;
+}
+
+.login-button {
+  width: 100%;
+  margin-bottom: 1rem;
+  border: none;
+  padding: 12px;
+  background-color: var(--primary-color);
+}
+.login-button:hover {
+  background-color: var(--secondary-color);
+}
+
+.footer-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.breadcrumb-link:hover {
+  color: var(--hover-color);
+}
+
+/* Style for form controls */
+.form-control {
+  border: 1px solid #b4b4b4; /* Light grey border */
+  border-radius: 4px; /* Small rounded corners */
+  transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+/* Style for form controls on focus */
+.form-control:focus {
+  border-color: var(--primary-color); /* Green border color on focus */
+  box-shadow: none; /* Remove the default focus shadow */
+}
+.create-button {
+  width: 50%;
+  padding: 12px;
+  border: none;
+  background-color: var(--secondary-color);
+}
+
+.create-button:hover {
+  width: 50%;
+
+  padding: 12px;
+  border: none;
+  background-color: var(--primary-color);
+}
+.forgot-button {
+  width: 50%;
+  padding: 12px;
+  border: 1px solid white;
+  color: var(--secondary-color);
+  background-color: white;
+  transition: border-color 0.3s;
+}
+.forgot-button:hover {
+  color: var(--secondary-color);
+  background-color: rgb(255, 255, 255);
+  border-color: var(--secondary-color);
+}
