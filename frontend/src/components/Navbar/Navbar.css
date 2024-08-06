@@ -1,0 +1,22 @@
+/* Navbar.css */
+.navbar-dark {
+  background-color: #343a40; /* Dark background for navbar */
+}
+.custom-brand {
+  font-size: 1rem;
+}
+.brand {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.navbar-light .nav-link {
+  color: #000000;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.nav-link:hover {
+  color: #8e9091;
+}
