@@ -44,7 +44,7 @@
 
 /* Style for form controls */
 .form-control {
-  border: 1px solid #b4b4b4; /* Light grey border */
+  border: 0.5px solid #cac9c9; /* Light grey border */
   border-radius: 4px; /* Small rounded corners */
   transition: border-color 0.3s ease; /* Smooth transition for border color */
 }

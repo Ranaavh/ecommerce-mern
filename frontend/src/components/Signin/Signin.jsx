@@ -1,16 +1,53 @@
+// src/components/Signin/Signin.js
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/actions/authActions";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import "./signin.css";
+import { toast } from "react-toastify";
 
 function Signin() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { name, email, phone, password, confirmPassword } = formData;
+
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      toast.warn("Passwords do not match");
+    } else if (!name || !email || !phone || !password || !confirmPassword) {
+      toast.warn("Please fill all fields");
+    } else {
+      try {
+        await dispatch(register({ name, email, phone, password }));
+        toast.success("User registered successfully");
+        navigate("/login"); // Redirect to login page
+      } catch (error) {
+        toast.error("Registration failed");
+      }
+    }
+  };
+
   return (
     <Container className="container-login form-container">
-      {/* Breadcrumb */}
       <Breadcrumb className="mb-4">
         <Breadcrumb.Item href="/" className="breadcrumb-link">
           Home
@@ -18,32 +55,64 @@ function Signin() {
         <Breadcrumb.Item active>Signin</Breadcrumb.Item>
       </Breadcrumb>
 
-      {/* Heading */}
       <h2 className="signin-heading mb-5">Create Account</h2>
 
       <Row className="form-col">
         <Col md={{ span: 6, offset: 3 }}>
-          <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form onSubmit={onSubmit}>
+            <Form.Group className="mb-3" controlId="formBasicName">
               <Form.Label>Full Name*</Form.Label>
-              <Form.Control placeholder="Enter Name" required />
+              <Form.Control
+                type="text"
+                placeholder="Enter Name"
+                name="name"
+                value={name}
+                onChange={onChange}
+                required
+              />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email*</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" required />
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                name="email"
+                value={email}
+                onChange={onChange}
+                required
+              />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Phone number*</Form.Label>
-              <Form.Control placeholder="Enter Phone Number" required />
+            <Form.Group className="mb-3" controlId="formBasicPhone">
+              <Form.Label>Phone Number</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Phone Number"
+                name="phone"
+                value={phone}
+                onChange={onChange}
+              />
             </Form.Group>
-            {/* Password Input */}
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password*</Form.Label>
-              <Form.Control type="password" placeholder="Password" required />
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                name="password"
+                value={password}
+                onChange={onChange}
+                required
+              />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
               <Form.Label>Confirm Password*</Form.Label>
-              <Form.Control type="password" placeholder="Password" required />
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                name="confirmPassword"
+                value={confirmPassword}
+                onChange={onChange}
+                required
+              />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check
@@ -53,7 +122,6 @@ function Signin() {
                 required
               />
             </Form.Group>
-            {/* Login Button */}
             <Button
               variant="primary"
               type="submit"
@@ -63,14 +131,13 @@ function Signin() {
             </Button>
             <Button
               variant="primary"
-              type="submit"
-              as={Link} to="/login"
+              type="button"
+              as={Link}
+              to="/login"
               className="already-button mb-3"
             >
-              Already an Account?
+              Already have an Account?
             </Button>
-
-            
           </Form>
         </Col>
       </Row>

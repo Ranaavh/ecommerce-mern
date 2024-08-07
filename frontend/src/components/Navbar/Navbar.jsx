@@ -32,7 +32,7 @@ const AppNavbar = () => {
  * CollapsibleExample component for displaying the main navigation bar.
  * Contains the brand, navigation links, and icons for search, user, cart, and wishlist.
  */
-const CollapsibleExample = () => {
+const CollapsibleNavbar = () => {
   return (
     <Navbar
       className="p-3 navbar-light"
@@ -40,7 +40,6 @@ const CollapsibleExample = () => {
       expand="lg"
       bg="light"
       variant="light"
-      
     >
       <Container>
         <Navbar.Brand className="brand" as={Link} to="/">
@@ -93,4 +92,4 @@ const CollapsibleExample = () => {
   );
 };
 
-export { AppNavbar, CollapsibleExample };
+export { AppNavbar, CollapsibleNavbar };
