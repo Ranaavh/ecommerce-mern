@@ -1,4 +1,3 @@
-// src/components/Signin/Signin.js
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/actions/authActions";
@@ -13,6 +12,7 @@ import "./signin.css";
 import { toast } from "react-toastify";
 
 function Signin() {
+  // State for form inputs
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -24,19 +24,25 @@ function Signin() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // Destructure form data
   const { name, email, phone, password, confirmPassword } = formData;
 
+  // Handle form input changes
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  // Handle form submission
   const onSubmit = async (e) => {
     e.preventDefault();
+
+    // Check for password match and required fields
     if (password !== confirmPassword) {
       toast.warn("Passwords do not match");
     } else if (!name || !email || !phone || !password || !confirmPassword) {
       toast.warn("Please fill all fields");
     } else {
       try {
+        // Dispatch registration action
         await dispatch(register({ name, email, phone, password }));
         toast.success("User registered successfully");
         navigate("/login"); // Redirect to login page
@@ -48,15 +54,14 @@ function Signin() {
 
   return (
     <Container className="container-login form-container">
+      {/* Breadcrumb */}
       <Breadcrumb className="mb-4">
         <Breadcrumb.Item href="/" className="breadcrumb-link">
           Home
         </Breadcrumb.Item>
         <Breadcrumb.Item active>Signin</Breadcrumb.Item>
       </Breadcrumb>
-
       <h2 className="signin-heading mb-5">Create Account</h2>
-
       <Row className="form-col">
         <Col md={{ span: 6, offset: 3 }}>
           <Form onSubmit={onSubmit}>

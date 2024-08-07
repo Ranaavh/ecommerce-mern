@@ -14,7 +14,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .login-heading {
@@ -44,15 +44,14 @@
 
 /* Style for form controls */
 .form-control {
-  border: 0.5px solid #cac9c9; /* Light grey border */
-  border-radius: 4px; /* Small rounded corners */
-  transition: border-color 0.3s ease; /* Smooth transition for border color */
+  border: 0.5px solid #cac9c9;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
 }
 
-/* Style for form controls on focus */
 .form-control:focus {
-  border-color: var(--primary-color); /* Green border color on focus */
-  box-shadow: none; /* Remove the default focus shadow */
+  border-color: var(--primary-color);
+  box-shadow: none;
 }
 .create-button {
   width: 50%;
@@ -63,7 +62,6 @@
 
 .create-button:hover {
   width: 50%;
-
   padding: 12px;
   border: none;
   background-color: var(--primary-color);
@@ -80,4 +78,27 @@
   color: var(--secondary-color);
   background-color: rgb(255, 255, 255);
   border-color: var(--secondary-color);
+}
+
+/* Media Queries for tablets and mobiles */
+@media (max-width: 768px) {
+  .form-col {
+    width: 90%;
+  }
+
+  .footer-buttons {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px; /* Reduced gap between buttons */
+  }
+
+  .create-button,
+  .forgot-button {
+    width: 100%; /* Make buttons full width */
+  }
+  .create-button:hover {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background-color: var(--primary-color);
+  }
 }

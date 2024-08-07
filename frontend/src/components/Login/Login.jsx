@@ -12,19 +12,23 @@ import { toast } from "react-toastify";
 import "./login.css";
 
 function Login() {
+  // Local state for form data
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
+  // Redux dispatch and navigation
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { email, password } = formData;
 
+  // Handle input changes
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  // Handle form submission
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
