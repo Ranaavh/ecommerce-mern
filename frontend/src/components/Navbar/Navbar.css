@@ -1,5 +1,3 @@
-/* Navbar.css */
-
 /* Dark theme for the top announcement bar */
 .navbar-dark {
   background-color: #343a40; /* Dark background for navbar */
@@ -46,4 +44,13 @@
 .navbar .dropdown-menu .dropdown-item:focus {
   outline: none;
   box-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .custom-brand {
+    font-size: 0.9rem;
+  }
+  .brand {
+    font-size: 1.3rem;
+  }
 }

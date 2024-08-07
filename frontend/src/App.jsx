@@ -10,6 +10,7 @@ import ContactPage from "./Pages/Contact/contact";
 import ShopPage from "./Pages/Shop/ShopPage";
 import Login from "./components/Login/Login";
 import Signin from "./components/Signin/Signin";
+import "./App.css";
 
 import { ToastContainer } from "react-toastify";
 
