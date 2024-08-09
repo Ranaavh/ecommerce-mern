@@ -1,8 +1,8 @@
-// routes/auth.js
+// routes/authController.js
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const User = require("../models/User");
+const User = require("../models/userModel");
 const router = express.Router();
 
 router.post("/login", async (req, res) => {
@@ -10,7 +10,7 @@ router.post("/login", async (req, res) => {
     const { email, password } = req.body;
 
     // Validate input
-    if (!email || !password) {
+    if (!email && !password) {
       return res
         .status(400)
         .json({ message: "Email and password are required" });
@@ -19,7 +19,7 @@ router.post("/login", async (req, res) => {
     // Find user by email
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({
+      return res.status(422).json({
         success: false,
         errorType: "INVALID_CREDENTIALS",
         message: "Invalid email or password",

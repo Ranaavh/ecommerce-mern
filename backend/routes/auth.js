@@ -1,7 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const User = require("../models/User");
+const User = require("../models/userModel");
 const router = express.Router();
 
 // Register Route
@@ -32,7 +32,7 @@ router.post("/register", async (req, res) => {
 
     // Create token
     const token = jwt.sign({ id: newUser._id }, "your_jwt_secret", {
-      expiresIn: "1h",
+      expiresIn: "32h",
     });
 
     // Send response
