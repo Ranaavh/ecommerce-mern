@@ -10,6 +10,7 @@ import BreadcrumbComponent from "./BreadcrumbComponent";
 import "./Signin.css";
 
 function Signin() {
+  // State to store form data
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,41 +19,47 @@ function Signin() {
     confirmPassword: "",
   });
 
+  // Redux dispatch and navigate hooks
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { name, email, phone, password, confirmPassword } = formData;
 
+  // Handle input changes
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = async (e) => {
+  // Handle form submission
+  const onSubmit = (e) => {
     e.preventDefault();
 
+    // Check if passwords match
     if (password !== confirmPassword) {
-      toast.warn("Passwords do not match");
+      toast.warn("Passwords do not match"); // Notify user of password mismatch
     } else {
-      try {
-        const resultAction = await dispatch(
-          register({ name, email, phone, password })
-        );
-        unwrapResult(resultAction);
-        toast.success("User registered successfully");
-        navigate("/login");
-      } catch (error) {
-        toast.error(error.message || "Registration failed");
-      }
+      // Dispatch register action
+      dispatch(register({ name, email, phone, password }))
+        .then((resultAction) => {
+          unwrapResult(resultAction); // Unwrap result to handle fulfilled or rejected action
+          toast.success("User registered successfully"); // Notify success
+          navigate("/login"); // Redirect to login page on success
+        })
+        .catch((error) => {
+          toast.error(error.message || "Registration failed"); // Notify failure
+        });
     }
   };
 
   return (
     <Container className="container-login form-container">
-      <BreadcrumbComponent />
-      <h2 className="signin-heading mb-5">Create Account</h2>
+      <BreadcrumbComponent /> {/* Breadcrumb navigation */}
+      <h2 className="signin-heading mb-5">Create Account</h2>{" "}
+      {/* Heading for the form */}
       <FormComponent
         formData={formData}
         onChange={onChange}
         onSubmit={onSubmit}
-      />
+      />{" "}
+      {/* Custom form component to handle form inputs and submission */}
     </Container>
   );
 }

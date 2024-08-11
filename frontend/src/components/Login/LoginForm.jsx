@@ -8,32 +8,38 @@ import { unwrapResult } from "@reduxjs/toolkit";
 import "./Login.css";
 
 const LoginForm = () => {
+  // State to store form data
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
+  // Redux dispatch and navigate hooks
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { email, password } = formData;
 
+  // Handle input changes
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = async (e) => {
+  // Handle form submission
+  const onSubmit = (e) => {
     e.preventDefault();
-    try {
-      const resultAction = await dispatch(login({ email, password }));
-      unwrapResult(resultAction);
-      toast.success("Login successful");
-      navigate("/home");
-    } catch (error) {
-      toast.error(error.message || "Login failed");
-    }
+    dispatch(login({ email, password }))
+      .then((resultAction) => {
+        unwrapResult(resultAction);
+        toast.success("Login successful"); // Notify success
+        navigate("/home"); // Redirect to home page on success
+      })
+      .catch((error) => {
+        toast.error(error.message || "Login failed"); // Notify failure
+      });
   };
 
   return (
     <Form onSubmit={onSubmit}>
+      {/* Email input field */}
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email*</Form.Label>
         <Form.Control
@@ -46,6 +52,7 @@ const LoginForm = () => {
         />
       </Form.Group>
 
+      {/* Password input field */}
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password*</Form.Label>
         <Form.Control
@@ -58,10 +65,12 @@ const LoginForm = () => {
         />
       </Form.Group>
 
+      {/* Submit button */}
       <Button variant="primary" type="submit" className="login-button mb-3">
         Login
       </Button>
 
+      {/* Footer buttons for account creation and password recovery */}
       <Row>
         <Col className="footer-buttons">
           <Button as={Link} to="/signin" className="create-button">
