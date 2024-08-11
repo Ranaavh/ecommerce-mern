@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { login } from "../../redux/auth/authSlice";
+import { login } from "../../features/auth/authSlice";
 import { useNavigate, Link } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { toast } from "react-toastify";
