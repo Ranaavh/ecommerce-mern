@@ -1,5 +1,6 @@
 import { Carousel } from "react-bootstrap";
 import "./Herosection.css";
+import ShopButton from "../Shop-Button/ShopButton";
 const HeroSection = () => {
   return (
     <section className="hero">
@@ -20,9 +21,7 @@ const HeroSection = () => {
                       crafted with an unwavering commitment to exceptional
                       quality.
                     </p>
-                    <a href="#" className="primary-btn">
-                      Shop now
-                    </a>
+                    <ShopButton />
                   </div>
                 </div>
               </div>
@@ -45,9 +44,7 @@ const HeroSection = () => {
                       crafted with an unwavering commitment to exceptional
                       quality.
                     </p>
-                    <a href="#" className="primary-btn">
-                      Shop now
-                    </a>
+                    <ShopButton />
                   </div>
                 </div>
               </div>

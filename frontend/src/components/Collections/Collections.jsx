@@ -1,12 +1,13 @@
+import "./Collections.css";
 const Collections = () => {
   return (
     <section className="banner spad">
       <div className="container">
         <div className="row">
-          <div className="col-lg-7 offset-lg-4">
+          <div className="col-lg-4 ">
             <div className="banner__item">
               <div className="banner__item__pic">
-                <img src="img/banner/banner-1.jpg" alt="Banner 1" />
+                <img src="images/banner/banner-1.jpg" alt="Banner 1" />
               </div>
               <div className="banner__item__text">
                 <h2>Clothing Collections 2030</h2>
@@ -14,10 +15,10 @@ const Collections = () => {
               </div>
             </div>
           </div>
-          <div className="col-lg-5">
+          <div className="col-lg-4">
             <div className="banner__item banner__item--middle">
               <div className="banner__item__pic">
-                <img src="img/banner/banner-2.jpg" alt="Banner 2" />
+                <img src="images/banner/banner-2.jpg" alt="Banner 2" />
               </div>
               <div className="banner__item__text">
                 <h2>Accessories</h2>
@@ -25,10 +26,10 @@ const Collections = () => {
               </div>
             </div>
           </div>
-          <div className="col-lg-7">
+          <div className="col-lg-4">
             <div className="banner__item banner__item--last">
               <div className="banner__item__pic">
-                <img src="img/banner/banner-3.jpg" alt="Banner 3" />
+                <img src="images/banner/banner-3.jpg" alt="Banner 3" />
               </div>
               <div className="banner__item__text">
                 <h2>Shoes Spring 2030</h2>

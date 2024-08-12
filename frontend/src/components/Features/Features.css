@@ -1,0 +1,20 @@
+.info-section {
+  background-color: #f3f3f3;
+  padding: 20px 0;
+}
+
+.info-section i {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.info-section h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.info-section p {
+  font-size: 0.7rem;
+  color: #6c757d; /* Grey color for text */
+}
