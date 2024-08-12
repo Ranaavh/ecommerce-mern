@@ -12,8 +12,8 @@ const HomePage = () => {
       <HeroSection />
       <Features />
       <Collections />
-      <NewArrivals />
       <TimerOffer />
+      <NewArrivals />
       <AboutBlog />
       <NewsLetter />
     </>
