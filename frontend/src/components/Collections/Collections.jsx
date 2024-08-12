@@ -1,10 +1,12 @@
-import "./Collections.css";
+import "./Collections.scss";
+import { Row } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 const Collections = () => {
   return (
     <section className="banner spad">
       <div className="container">
-        <div className="row">
-          <div className="col-lg-4 ">
+        <Row>
+          <Col lg={4}>
             <div className="banner__item">
               <div className="banner__item__pic">
                 <img src="images/banner/banner-1.jpg" alt="Banner 1" />
@@ -14,8 +16,8 @@ const Collections = () => {
                 <a href="#">Shop now</a>
               </div>
             </div>
-          </div>
-          <div className="col-lg-4">
+          </Col>
+          <Col lg={4}>
             <div className="banner__item banner__item--middle">
               <div className="banner__item__pic">
                 <img src="images/banner/banner-2.jpg" alt="Banner 2" />
@@ -25,8 +27,8 @@ const Collections = () => {
                 <a href="#">Shop now</a>
               </div>
             </div>
-          </div>
-          <div className="col-lg-4">
+          </Col>
+          <Col lg={4}>
             <div className="banner__item banner__item--last">
               <div className="banner__item__pic">
                 <img src="images/banner/banner-3.jpg" alt="Banner 3" />
@@ -36,8 +38,8 @@ const Collections = () => {
                 <a href="#">Shop now</a>
               </div>
             </div>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </div>
     </section>
   );

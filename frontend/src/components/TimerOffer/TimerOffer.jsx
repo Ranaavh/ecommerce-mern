@@ -1,8 +1,42 @@
+import { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import "./TimerOffer.css";
+import "./TimerOffer.scss";
 import ShopButton from "../Shop-Button/ShopButton";
 
 const TimeOffer = () => {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    // Set the target date and time
+    const countdownDate = new Date("2024-08-20T00:00:00").getTime();
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+
+      if (distance > 0) {
+        setTimeLeft({
+          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+          hours: Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          ),
+          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((distance % (1000 * 60)) / 1000),
+        });
+      } else {
+        clearInterval(interval);
+        // Optionally handle the event after countdown reaches 0
+      }
+    }, 1000);
+
+    return () => clearInterval(interval); // Clean up the interval on component unmount
+  }, []);
+
   return (
     <section className="categories spad">
       <Container>
@@ -27,25 +61,25 @@ const TimeOffer = () => {
           <Col lg={4} className="offset-lg-1">
             <div className="categories__deal__countdown">
               <span>Deal Of The Week</span>
-              <h2>Multi-pocket Chest Bag Black</h2>
+              <h1>Multi-pocket Chest Bag Black</h1>
               <div
                 className="categories__deal__countdown__timer"
                 id="countdown"
               >
                 <div className="cd-item">
-                  <span>3</span>
+                  <span>{timeLeft.days}</span>
                   <p>Days</p>
                 </div>
                 <div className="cd-item">
-                  <span>1</span>
+                  <span>{timeLeft.hours}</span>
                   <p>Hours</p>
                 </div>
                 <div className="cd-item">
-                  <span>50</span>
+                  <span>{timeLeft.minutes}</span>
                   <p>Minutes</p>
                 </div>
                 <div className="cd-item">
-                  <span>18</span>
+                  <span>{timeLeft.seconds}</span>
                   <p>Seconds</p>
                 </div>
               </div>
