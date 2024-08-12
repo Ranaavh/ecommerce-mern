@@ -1,5 +1,5 @@
 import { Carousel } from "react-bootstrap";
-import "./Herosection.scss";
+import "./Herosection.css";
 import ShopButton from "../Shop-Button/ShopButton";
 const HeroSection = () => {
   return (

@@ -1,4 +1,4 @@
-.primary-btn {
+.hero .primary-btn {
   display: inline-block;
   font-size: 16px;
   font-weight: 700;
@@ -10,6 +10,6 @@
   text-decoration: none;
 }
 
-.primary-btn:hover {
+.hero .primary-btn:hover {
   background: #545353; /* Darker black */
 }
