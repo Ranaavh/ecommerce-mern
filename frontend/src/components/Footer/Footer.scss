@@ -1,0 +1,45 @@
+// components/Footer/Footer.scss
+.footer {
+  background-color: #000;
+  color: #fff;
+  padding: 40px 0;
+
+  h4 {
+    margin-bottom: 20px;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 10px;
+      font-size: 14px;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .footer-bottom {
+    margin-top: 30px;
+    border-top: 1px solid #444;
+    padding-top: 20px;
+    text-align: center;
+
+    p {
+      margin: 0;
+      font-size: 14px;
+    }
+  }
+}

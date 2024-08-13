@@ -10,6 +10,7 @@ import ContactPage from "./Pages/Contact";
 import ShopPage from "./Pages/ShopPage";
 import Login from "./components/Login/Login";
 import Signin from "./components/Signin/Signin";
+import Footer from "./components/Footer/Footer";
 import "./App.css";
 
 import { ToastContainer } from "react-toastify";
@@ -33,6 +34,7 @@ const App = () => {
           </Routes>
         </Container>
       </main>
+      <Footer />
     </Router>
   );
 };
