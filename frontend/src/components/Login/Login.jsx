@@ -1,10 +1,14 @@
 // Login.jsx
+import { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import BreadcrumbNav from "./BreadcrumbNav";
 import LoginForm from "./LoginForm";
 import "./Login.css";
 
 const Login = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top of the page
+  }, []);
   return (
     <Container className="container-login form-container">
       <BreadcrumbNav />
