@@ -1,6 +1,23 @@
+import Features from "../components/Features/Features";
+import Collections from "../components/Collections/Collections";
+import NewArrivals from "../components/NewArrivals/NewArrivals";
+import TimerOffer from "../components/TimerOffer/TimerOffer";
+import AboutBlog from "../components/AboutBlog/AboutBlog";
+import NewsLetter from "../components/NewsLetter/NewsLetter";
+import HeroSection from "../components/HeroSection/HeroSection";
 
 const HomePage = () => {
-  return <h1>Home Page</h1>;
+  return (
+    <>
+      <HeroSection />
+      <Features />
+      <Collections />
+      <NewArrivals />
+      <TimerOffer />
+      <AboutBlog />
+      <NewsLetter />
+    </>
+  );
 };
 
 export default HomePage;
