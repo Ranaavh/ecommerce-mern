@@ -7,7 +7,7 @@ import { LuRefreshCcw } from "react-icons/lu";
 
 const Features = () => {
   return (
-    <div className="info-section m-4">
+    <div className="features m-4">
       <Row className=" text-center ">
         <Col md={3}>
           <FaTruck

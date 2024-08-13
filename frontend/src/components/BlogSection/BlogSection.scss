@@ -1,0 +1,48 @@
+// components/InfoSection/InfoSection.scss
+.info-section {
+  padding-top: 80px;
+  padding-bottom: 120px;
+  .info-item {
+    position: relative;
+    cursor: pointer;
+
+    .info-image {
+      width: 100%;
+      height: auto;
+      transition: opacity 0.3s ease;
+    }
+
+    .info-text {
+      position: absolute;
+      width: 80%;
+      top: 100%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      text-align: center;
+      opacity: 1;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+      h2 {
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      p {
+        font-size: 16px;
+        line-height: 1.5;
+      }
+    }
+
+    &:hover {
+      .info-text {
+        opacity: 0.9;
+        visibility: visible;
+      }
+    }
+  }
+}
