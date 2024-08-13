@@ -5,6 +5,7 @@ import TimerOffer from "../components/TimerOffer/TimerOffer";
 import AboutBlog from "../components/AboutBlog/AboutBlog";
 import NewsLetter from "../components/NewsLetter/NewsLetter";
 import HeroSection from "../components/HeroSection/HeroSection";
+import BlogSection from "../components/BlogSection/BlogSection";
 
 const HomePage = () => {
   return (
@@ -15,6 +16,7 @@ const HomePage = () => {
       <AboutBlog />
       <NewArrivals />
       <TimerOffer />
+      <BlogSection/>
       <NewsLetter />
     </>
   );
