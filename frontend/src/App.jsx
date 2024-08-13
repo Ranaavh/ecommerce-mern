@@ -1,6 +1,5 @@
 // App.jsx
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Container } from "react-bootstrap";
 import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./Pages/HomePage";
 import AboutUsPage from "./Pages/AboutPage";
@@ -20,19 +19,17 @@ const App = () => {
     <Router>
       <Navbar />
       <ToastContainer />
-      <main className="py-3">
-        <Container>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/shop" element={<ShopPage />} />
-            <Route path="/about-us" element={<AboutUsPage />} />
-            <Route path="/wishlist" element={<WishlistPage />} />
-            <Route path="/checkout" element={<CheckoutPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signin" element={<Signin />} />
-          </Routes>
-        </Container>
+      <main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/shop" element={<ShopPage />} />
+          <Route path="/about-us" element={<AboutUsPage />} />
+          <Route path="/wishlist" element={<WishlistPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signin" element={<Signin />} />
+        </Routes>
       </main>
       <Footer />
     </Router>

@@ -15,9 +15,9 @@
   color: rgb(71, 71, 71);
 }
 
-/* Color for the 'SITE' part of the brand */
+
 .brand span {
-  color: rgb(255, 112, 4);
+  color: var(--primary-color);
 }
 
 /* Navbar links styling */

@@ -1,0 +1,36 @@
+.newsletter {
+  background-color: #dadada;
+  padding: 40px 0;
+
+  h2 {
+    font-size: 28px;
+    margin: 0;
+    font-weight: 600;
+    color: #333;
+  }
+  .custom-input::placeholder {
+    color: #6c757d; /* Change this to your desired color */
+    opacity: 1; /* Ensures the color is applied fully */
+  }
+  p {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #666;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 10px 20px;
+    margin: 0;
+    border: 0;
+  }
+
+  .btn-primary {
+    background-color: var(--primary-color);
+    border: 0;
+    border-radius: 0;
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+}
