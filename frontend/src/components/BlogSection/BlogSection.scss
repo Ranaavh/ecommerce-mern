@@ -54,4 +54,9 @@
     text-transform: uppercase;
     text-decoration: solid underline;
   }
+  @media (max-width: 768px) {
+    .info-item {
+      margin-bottom: 110px;
+    }
+  }
 }
