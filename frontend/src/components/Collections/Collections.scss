@@ -3,18 +3,18 @@
 
   .banner__item {
     position: relative;
-
+    overflow: hidden;
     &__pic {
+      position: relative;
+      overflow: hidden;
       img {
         width: 100%;
         height: 380px;
-        transition: transform 0.3s ease-in-out;
+        transition: transform 0.5s ease;
       }
 
       &:hover {
-        img {
-          transform: scale(1.1);
-        }
+        transform: scale(1.1); /* Zoom in on hover */
       }
     }
 
@@ -43,6 +43,11 @@
           border-color: var(--primary-color);
         }
       }
+    }
+  }
+  @media (max-width: 768px) {
+    .banner__item {
+      margin-bottom: 30px;
     }
   }
 }

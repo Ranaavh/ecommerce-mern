@@ -9,7 +9,7 @@ const Collections = () => {
           <Col lg={4}>
             <div className="banner__item">
               <div className="banner__item__pic">
-                <img src="images/banner/banner-1.jpg" alt="Banner 1" />
+                <img  src="images/banner/banner-1.jpg" alt="Banner 1" />
               </div>
               <div className="banner__item__text">
                 <h2>Clothing Collections 2030</h2>
@@ -28,7 +28,7 @@ const Collections = () => {
               </div>
             </div>
           </Col>
-          <Col lg={4}>
+          <Col >
             <div className="banner__item banner__item--last">
               <div className="banner__item__pic">
                 <img src="images/banner/banner-3.jpg" alt="Banner 3" />

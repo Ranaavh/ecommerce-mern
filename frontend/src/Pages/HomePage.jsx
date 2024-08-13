@@ -12,9 +12,9 @@ const HomePage = () => {
       <HeroSection />
       <Features />
       <Collections />
-      <TimerOffer />
-      <NewArrivals />
       <AboutBlog />
+      <NewArrivals />
+      <TimerOffer />
       <NewsLetter />
     </>
   );
