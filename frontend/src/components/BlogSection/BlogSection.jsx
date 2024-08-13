@@ -19,6 +19,7 @@ const BlogSection = () => {
                   Stay ahead with our curated collection of the latest trends
                   and seasonal must-haves.
                 </p>
+                <button>Read More</button>
               </div>
             </div>
           </div>
@@ -35,6 +36,7 @@ const BlogSection = () => {
                   Explore limited-edition pieces and unique designs that make
                   you stand out from the crowd.
                 </p>
+                <button>Read More</button>
               </div>
             </div>
           </div>
@@ -52,6 +54,7 @@ const BlogSection = () => {
                   Get inspired by styling tips and outfit ideas. Discover new
                   ways to wear your favorite pieces.
                 </p>
+                <button>Read More</button>
               </div>
             </div>
           </div>

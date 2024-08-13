@@ -45,4 +45,13 @@
       }
     }
   }
+  button {
+    border: 0;
+    background-color: white;
+    color: var(--primary-color);
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: solid underline;
+  }
 }
