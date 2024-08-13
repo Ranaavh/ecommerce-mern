@@ -30,7 +30,7 @@ const LoginForm = () => {
       .then((resultAction) => {
         unwrapResult(resultAction);
         toast.success("Login successful"); // Notify success
-        navigate("/home"); // Redirect to home page on success
+        navigate("/"); // Redirect to home page on success
       })
       .catch((error) => {
         toast.error(error.message || "Login failed"); // Notify failure
