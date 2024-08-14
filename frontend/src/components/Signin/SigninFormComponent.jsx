@@ -1,9 +1,55 @@
-/* eslint-disable react/prop-types */
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { register } from "../../features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { unwrapResult } from "@reduxjs/toolkit";
 import { Link } from "react-router-dom";
 import { Form, Button, Col, Row } from "react-bootstrap";
 
-const FormComponent = ({ formData, onChange, onSubmit }) => {
+const FormComponent = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top of the page
+  }, []);
+
+  // State to store form data
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  // Redux dispatch and navigate hooks
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { name, email, phone, password, confirmPassword } = formData;
+
+  // Handle input changes
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  // Handle form submission
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    // Check if passwords match
+    if (password !== confirmPassword) {
+      toast.warn("Passwords do not match"); // Notify user of password mismatch
+    } else {
+      // Dispatch register action
+      dispatch(register({ name, email, phone, password }))
+        .then((resultAction) => {
+          unwrapResult(resultAction); // Unwrap result to handle fulfilled or rejected action
+          toast.success("User registered successfully"); // Notify success
+          navigate("/"); // Redirect to home page on success
+        })
+        .catch((error) => {
+          toast.error(error.message || "Registration failed"); // Notify failure
+        });
+    }
+  };
 
   return (
     <Row className="form-col">
