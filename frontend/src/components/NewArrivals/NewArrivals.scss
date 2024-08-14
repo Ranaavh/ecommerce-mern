@@ -1,6 +1,6 @@
 .product {
   padding: 0 0 60px;
-  margin-top: 80px;
+  margin-top: 40px;
 
   .filter__controls {
     text-align: center;
@@ -14,7 +14,7 @@
       display: inline-block;
       margin-right: 88px;
       cursor: pointer;
-      transition: color 0.3s ease; // Smooth color transition
+      transition: color 0.3s ease;
 
       &:last-child {
         margin-right: 0;
@@ -26,52 +26,12 @@
     }
   }
 
-  .product__item {
-    overflow: hidden;
-    margin-bottom: 40px;
-    transition: transform 0.5s ease, box-shadow 0.3s ease;
-
-    &:hover {
-      transform: scale(1.05); // Slightly enlarge the product item on hover
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); // Add a shadow effect
-
-      .product__item__pic .label {
-        color: white;
-        background: black;
-        transition: background 0.3s ease, color 0.3s ease; // Smooth transition for label
-      }
-
-      .product__item__pic .product__hover {
-        right: 20px;
-        opacity: 1;
-        transform: scale(1.1); // Slightly enlarge the hover icons
-        transition: right 0.3s ease, opacity 0.3s ease, transform 0.3s ease; // Smooth transition for hover icons
-      }
-
-      .product__item__text a {
-        top: 22px;
-        opacity: 1;
-        visibility: visible;
-        transition: opacity 0.3s ease, top 0.3s ease; // Smooth transition for "Add To Cart" link
-      }
-
-      .product__item__text h6 {
-        opacity: 0;
-        transition: opacity 0.3s ease; // Smooth transition for the title fade-out
-      }
-
-      .product__item__text .rating i {
-        color: #f7941d; // Change star color on hover
-      }
-    }
-  }
-
   .product__item__pic {
     height: 260px;
     position: relative;
     background-position: center center;
     background-size: cover;
-    transition: transform 0.5s ease; // Smooth transition for image
+    transition: transform 0.5s ease;
 
     .label {
       color: black;
@@ -85,53 +45,20 @@
       position: absolute;
       left: 0;
       top: 20px;
-      transition: background 0.3s ease, color 0.3s ease; // Smooth transition for label
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
     .product__hover {
       position: absolute;
-      right: -200px;
+      right: 20px;
       top: 20px;
       opacity: 0;
-      transition: right 0.5s ease, opacity 0.5s ease, transform 0.5s ease; // Smooth transition for hover icons
+      transition: right 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
 
       li {
         list-style: none;
         margin-bottom: 10px;
         position: relative;
-
-        &:hover span {
-          opacity: 1;
-          visibility: visible;
-          transition: opacity 0.3s ease, visibility 0.3s ease; // Smooth transition for tooltip
-        }
-
-        span {
-          color: white;
-          background: white;
-          display: inline-block;
-          padding: 4px 10px;
-          font-size: 12px;
-          position: absolute;
-          left: -78px;
-          top: 5px;
-          z-index: 1;
-          opacity: 0;
-          visibility: hidden;
-          transition: opacity 0.3s ease, visibility 0.3s ease; // Smooth transition for tooltip
-
-          &:after {
-            position: absolute;
-            right: -2px;
-            top: 5px;
-            height: 15px;
-            width: 15px;
-            background: var(--primary-color);
-            content: "";
-            transform: rotate(45deg);
-            z-index: -1;
-          }
-        }
 
         img {
           background: white;
@@ -144,6 +71,8 @@
 
   .product__item__text {
     padding-top: 25px;
+    margin-left: 12px;
+
     position: relative;
 
     a {
@@ -152,10 +81,10 @@
       font-weight: 700;
       position: absolute;
       left: 0;
-      top: 0;
+      top: 22px;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.3s, top 0.3s ease; // Smooth transition for "Add To Cart" link
+      transition: opacity 0.3s ease, top 0.3s ease;
     }
 
     h6 {
@@ -163,32 +92,74 @@
       font-size: 15px;
       font-weight: 600;
       margin-bottom: 5px;
-      transition: opacity 0.3s ease; // Smooth transition for the title fade-out
+      transition: opacity 0.3s ease;
     }
 
     .rating {
       margin-bottom: 6px;
 
       i {
-        font-size: 14px;
+        margin-right: 2px;
         color: #f7941d;
-        margin-right: -5px;
-        transition: color 0.3s ease; // Smooth transition for star color change
+        transition: color 0.3s ease;
+
+        &.bi-star {
+          color: #d1d1d1;
+        }
+
+        &.bi-star-fill {
+          color: #f7941d;
+        }
       }
     }
 
     h5 {
+      font-size: 18px;
       color: #0d0d0d;
       font-weight: 700;
+    }
+  }
+
+  .product__item {
+    overflow: hidden;
+    margin-bottom: 40px;
+    transition: transform 0.5s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+
+      .product__item__pic .label {
+        color: white;
+        background: black;
+      }
+
+      .product__item__pic .product__hover {
+        right: 20px;
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .product__item__text a {
+        top: 22px;
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .product__item__text h6 {
+        opacity: 0;
+      }
+
+      .product__item__text .rating i {
+        color: #f7941d;
+      }
     }
   }
 
   @media (max-width: 768px) {
     .filter__controls {
       li {
-        color: #b7b7b7;
         font-size: 20px;
-        font-weight: 700;
         margin-right: 70px;
       }
     }
@@ -197,10 +168,11 @@
   @media (max-width: 480px) {
     .filter__controls {
       li {
-        color: #b7b7b7;
         font-size: 16px;
-        font-weight: 700;
         margin-right: 30px;
+      }
+      .product__item__text {
+        text-align: center;
       }
     }
   }

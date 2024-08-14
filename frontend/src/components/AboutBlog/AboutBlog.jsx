@@ -8,7 +8,7 @@ const AboutBlog = () => {
   return (
     <div className="container py-5">
       <Row className="align-items-center">
-        <Col md={6}>
+        <Col lg={6}>
           <div className="image-container">
             <img
               src="./images/banner/banner-4.jpg"

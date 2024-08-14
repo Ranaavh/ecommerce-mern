@@ -38,7 +38,7 @@ const TimeOffer = () => {
   }, []);
 
   return (
-    <section className="categories spad">
+    <div className="categories">
       <Container>
         <Row>
           <Col lg={3}>
@@ -88,7 +88,7 @@ const TimeOffer = () => {
           </Col>
         </Row>
       </Container>
-    </section>
+    </div>
   );
 };
 

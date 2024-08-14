@@ -9,47 +9,23 @@ const Features = () => {
   return (
     <div className="features m-4">
       <Row className=" text-center ">
-        <Col md={3}>
-          <FaTruck
-            style={{
-              color: "var(--primary-color)",
-              fontSize: "30px",
-              marginBottom: "10px",
-            }}
-          />
+        <Col sm={6} lg={3}>
+          <FaTruck className="features-icon" />
           <h4>Free Shipping</h4>
           <p>For all Orders Over $100</p>
         </Col>
-        <Col md={3}>
-          <LuRefreshCcw
-            style={{
-              color: "var(--primary-color)",
-              fontSize: "30px",
-              marginBottom: "10px",
-            }}
-          />
+        <Col sm={6} lg={3}>
+          <LuRefreshCcw className="features-icon" />
           <h4>30 Days Returns</h4>
           <p>For an Exchange Product</p>
         </Col>
-        <Col md={3}>
-          <FaLock
-            style={{
-              color: "var(--primary-color)",
-              fontSize: "30px",
-              marginBottom: "10px",
-            }}
-          />
+        <Col sm={6} lg={3}>
+          <FaLock className="features-icon" />
           <h4>Secured Payment</h4>
           <p>Payment Cards Accepted</p>
         </Col>
-        <Col md={3}>
-          <FaHeadset
-            style={{
-              color: "var(--primary-color)",
-              fontSize: "30px",
-              marginBottom: "10px",
-            }}
-          />
+        <Col sm={6} md={3}>
+          <FaHeadset className="features-icon" />
           <h4>Support 24/7</h4>
           <p>Contact us Anytime</p>
         </Col>

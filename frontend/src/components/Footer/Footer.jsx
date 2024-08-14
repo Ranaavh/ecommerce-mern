@@ -1,13 +1,15 @@
-
 import "./Footer.scss";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
 
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="container">
-        <div className="row">
+      <Container>
+        <Row>
           {/* First Column */}
-          <div className="col-lg-3 col-md-6">
+          <Col lg={3}  sm={6}>
             <h4 className="brand">
               REACT<span>SITE</span>
             </h4>
@@ -15,10 +17,10 @@ const Footer = () => {
               The customer is at the heart of our unique business model, which
               includes design.
             </p>
-          </div>
+          </Col>
 
           {/* Second Column */}
-          <div className="col-lg-3 col-md-6">
+          <Col lg={3}  sm={6}>
             <h4>About Us</h4>
             <ul>
               <li>About Us</li>
@@ -26,10 +28,10 @@ const Footer = () => {
               <li>Shipping</li>
               <li>Contact Us</li>
             </ul>
-          </div>
+          </Col>
 
           {/* Third Column */}
-          <div className="col-lg-3 col-md-6">
+          <Col lg={3} sm={6}>
             <h4>Shopping</h4>
             <ul>
               <li>Contact Us</li>
@@ -37,10 +39,10 @@ const Footer = () => {
               <li>Delivery</li>
               <li>Return & Exchanges</li>
             </ul>
-          </div>
+          </Col>
 
           {/* Fourth Column */}
-          <div className="col-lg-3 col-md-6">
+          <Col lg={3} sm={6}>
             <h4>Our Services</h4>
             <ul>
               <li>Free Shipping</li>
@@ -49,14 +51,14 @@ const Footer = () => {
               <li>Terms and Conditions</li>
               <li>Privacy Policy</li>
             </ul>
-          </div>
-        </div>
+          </Col>
+        </Row>
 
-        {/* Second Row */}
+        {/* Footer Bottom */}
         <div className="footer-bottom">
           <p>Copyright ©2024 All rights reserved</p>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 };

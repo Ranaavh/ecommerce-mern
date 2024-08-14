@@ -1,9 +1,7 @@
-// components/Footer/Footer.scss
 .footer {
   background-color: #000;
   color: #fff;
   padding: 40px 0;
-
   h4 {
     margin-bottom: 20px;
     font-size: 15px;
@@ -24,10 +22,7 @@
       margin-bottom: 10px;
       font-size: 14px;
       cursor: pointer;
-
-      &:hover {
-        text-decoration: underline;
-      }
+      text-decoration: none;
     }
   }
 
@@ -40,6 +35,21 @@
     p {
       margin: 0;
       font-size: 14px;
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    // Tablet and below
+    .row > div {
+      margin-bottom: 30px;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    // Mobile devices
+    .row > div {
+      margin-bottom: 20px;
+      text-align: center;
     }
   }
 }

@@ -1,56 +1,50 @@
-import { Carousel } from "react-bootstrap";
+import { Carousel, Container, Row, Col } from "react-bootstrap";
 import "./Herosection.scss";
 import ShopButton from "../Shop-Button/ShopButton";
+
+// Array of carousel items
+const carouselItems = [
+  {
+    image: "/images/hero/hero-1.jpg",
+    heading: "Summer Collection",
+    subheading: "Fall - Winter Collections 2030",
+    description:
+      "A specialist label creating luxury essentials. Ethically crafted with an unwavering commitment to exceptional quality.",
+  },
+  {
+    image: "/images/hero/hero-2.jpg",
+    heading: "Summer Collection",
+    subheading: "Fall - Winter Collections 2030",
+    description:
+      "A specialist label creating luxury essentials. Ethically crafted with an unwavering commitment to exceptional quality.",
+  },
+];
+
 const HeroSection = () => {
   return (
     <section className="hero">
       <Carousel>
-        <Carousel.Item>
-          <div
-            className="hero__items set-bg"
-            style={{ backgroundImage: "url('/images/hero/hero-1.jpg')" }}
-          >
-            <div className="container">
-              <div className="row">
-                <div className="col-xl-5 col-lg-7 col-md-8">
-                  <div className="hero__text">
-                    <h6>Summer Collection</h6>
-                    <h2>Fall - Winter Collections 2030</h2>
-                    <p>
-                      A specialist label creating luxury essentials. Ethically
-                      crafted with an unwavering commitment to exceptional
-                      quality.
-                    </p>
-                    <ShopButton />
-                  </div>
-                </div>
-              </div>
+        {carouselItems.map((item, index) => (
+          <Carousel.Item key={index}>
+            <div
+              className="hero__items set-bg"
+              style={{ backgroundImage: `url(${item.image})` }}
+            >
+              <Container>
+                <Row>
+                  <Col xl={5} lg={12} md={5}>
+                    <div className="hero__text">
+                      <h6>{item.heading}</h6>
+                      <h2>{item.subheading}</h2>
+                      <p>{item.description}</p>
+                      <ShopButton />
+                    </div>
+                  </Col>
+                </Row>
+              </Container>
             </div>
-          </div>
-        </Carousel.Item>
-        <Carousel.Item>
-          <div
-            className="hero__items set-bg"
-            style={{ backgroundImage: `url('/images/hero/hero-2.jpg')` }}
-          >
-            <div className="container">
-              <div className="row">
-                <div className="col-xl-5 col-lg-7 col-md-8">
-                  <div className="hero__text">
-                    <h6>Summer Collection</h6>
-                    <h2>Fall - Winter Collections 2030</h2>
-                    <p>
-                      A specialist label creating luxury essentials. Ethically
-                      crafted with an unwavering commitment to exceptional
-                      quality.
-                    </p>
-                    <ShopButton />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Carousel.Item>
+          </Carousel.Item>
+        ))}
       </Carousel>
     </section>
   );

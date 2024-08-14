@@ -1,47 +1,48 @@
 import "./Collections.scss";
-import { Row } from "react-bootstrap";
-import { Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
+
+const collectionItems = [
+  {
+    imgSrc: "images/banner/banner-1.jpg",
+    title: "Clothing Collections 2030",
+    link: "#",
+    colClass: "banner__item--first",
+  },
+  {
+    imgSrc: "images/banner/banner-2.jpg",
+    title: "Accessories",
+    link: "#",
+    colClass: "banner__item--middle",
+  },
+  {
+    imgSrc: "images/banner/banner-3.jpg",
+    title: "Shoes Spring 2030",
+    link: "#",
+    colClass: "banner__item--last",
+  },
+];
+
 const Collections = () => {
   return (
-    <section className="banner spad">
+    <div className="banner">
       <div className="container">
         <Row>
-          <Col lg={4}>
-            <div className="banner__item">
-              <div className="banner__item__pic">
-                <img  src="images/banner/banner-1.jpg" alt="Banner 1" />
+          {collectionItems.map((item, index) => (
+            <Col sm={12} md={4} lg={4} key={index}>
+              <div className={`banner__item ${item.colClass}`}>
+                <div className="banner__item__pic">
+                  <img src={item.imgSrc} alt={item.title} />
+                </div>
+                <div className="banner__item__text">
+                  <h2>{item.title}</h2>
+                  <a href={item.link}>Shop now</a>
+                </div>
               </div>
-              <div className="banner__item__text">
-                <h2>Clothing Collections 2030</h2>
-                <a href="#">Shop now</a>
-              </div>
-            </div>
-          </Col>
-          <Col lg={4}>
-            <div className="banner__item banner__item--middle">
-              <div className="banner__item__pic">
-                <img src="images/banner/banner-2.jpg" alt="Banner 2" />
-              </div>
-              <div className="banner__item__text">
-                <h2>Accessories</h2>
-                <a href="#">Shop now</a>
-              </div>
-            </div>
-          </Col>
-          <Col >
-            <div className="banner__item banner__item--last">
-              <div className="banner__item__pic">
-                <img src="images/banner/banner-3.jpg" alt="Banner 3" />
-              </div>
-              <div className="banner__item__text">
-                <h2>Shoes Spring 2030</h2>
-                <a href="#">Shop now</a>
-              </div>
-            </div>
-          </Col>
+            </Col>
+          ))}
         </Row>
       </div>
-    </section>
+    </div>
   );
 };
 

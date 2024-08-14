@@ -1,5 +1,7 @@
 // components/NewArrivals/NewArrivals.jsx
 import { useState } from "react";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import "./NewArrivals.scss";
 
 const products = [
@@ -82,11 +84,10 @@ const NewArrivals = () => {
   });
 
   return (
-    <section className="product spad">
+    <div className="product">
       <div className="container py-6">
-        <div className="row">
-          
-          <div className="col-lg-12">
+        <Row>
+          <Col lg={12}>
             <ul className="filter__controls">
               <li
                 className={activeFilter === "*" ? "active" : ""}
@@ -107,9 +108,9 @@ const NewArrivals = () => {
                 Hot Sales
               </li>
             </ul>
-          </div>
-        </div>
-        <div className="row product__filter">
+          </Col>
+        </Row>
+        <Row className="product__filter">
           {filteredProducts.map((product) => (
             <div
               key={product.id}
@@ -142,8 +143,8 @@ const NewArrivals = () => {
                     {[...Array(5)].map((_, index) => (
                       <i
                         key={index}
-                        className={`fa fa-star${
-                          index < product.rating ? "" : "-o"
+                        className={`bi ${
+                          index < product.rating ? "bi-star-fill" : "bi-star"
                         }`}
                       ></i>
                     ))}
@@ -153,9 +154,9 @@ const NewArrivals = () => {
               </div>
             </div>
           ))}
-        </div>
+        </Row>
       </div>
-    </section>
+    </div>
   );
 };
 
