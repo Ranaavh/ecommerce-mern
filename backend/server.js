@@ -3,10 +3,12 @@ const connectDB = require("./config/db");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const authRoutes = require("./routes/authRoutes");
+const validateRoutes = require("./routes/validateRoutes");
 
 dotenv.config();
 
 const app = express();
+
 // Connect to MongoDB
 connectDB();
 
@@ -16,6 +18,13 @@ app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/auth/validate", validateRoutes); // Use the validation routes
+
+// Global Error Handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: "An unexpected error occurred" });
+});
 
 // Start server
 const PORT = process.env.PORT || 5000;

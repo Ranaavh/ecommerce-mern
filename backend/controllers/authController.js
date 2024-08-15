@@ -4,10 +4,12 @@ const User = require("../models/userModel");
 
 // Register a new user
 exports.register = (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, name } = req.body;
 
-  if (!email || !password) {
-    return res.status(400).json({ message: "Email and password are required" });
+  if (!email || !password || !name) {
+    return res
+      .status(400)
+      .json({ message: "Email, password, and name are required" });
   }
 
   // Check if user already exists
@@ -16,23 +18,28 @@ exports.register = (req, res) => {
       if (existingUser) {
         return res.status(400).json({ message: "User already exists" });
       }
-
       // Hash password
       return bcrypt.genSalt(10);
     })
     .then((salt) => bcrypt.hash(password, salt))
     .then((hashedPassword) => {
       // Create user
-      const newUser = new User({ email, password: hashedPassword });
+      const newUser = new User({
+        username: req.body.name,
+        email: req.body.email,
+        password: hashedPassword, // Assuming password is hashed
+      });
       return newUser.save();
     })
     .then((newUser) => {
       // Create token
-      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
-        expiresIn: "32h",
-      });
+      const token = jwt.sign(
+        { id: newUser._id, username: newUser.username },
+        process.env.JWT_SECRET,
+        { expiresIn: "32h" }
+      );
 
-      res.json({ success: true, token });
+      res.json({ success: true, token, username: newUser.username });
     })
     .catch((error) => {
       console.error("Register Error:", error);
@@ -70,11 +77,18 @@ exports.login = (req, res) => {
         }
 
         // Create a token
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-          expiresIn: "32h",
-        });
+        const token = jwt.sign(
+          { id: user._id, username: user.username }, // Ensure 'username' is included here
+          process.env.JWT_SECRET,
+          { expiresIn: "32h" }
+        );
+       
 
-        res.json({ success: true, token });
+        res.json({
+          success: true,
+          token,
+          username: user.username, // Add username here
+        });
       });
     })
     .catch((error) => {

@@ -1,5 +1,12 @@
-// App.jsx
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+import { validateToken } from "./features/auth/authSlice";
 import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./Pages/HomePage";
 import AboutUsPage from "./Pages/AboutPage";
@@ -11,10 +18,16 @@ import Login from "./components/Login/Login";
 import Signin from "./components/Signin/Signin";
 import Footer from "./components/Footer/Footer";
 import "./App.css";
-
 import { ToastContainer } from "react-toastify";
 
 const App = () => {
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(validateToken()); // Validate token on app load
+  }, [dispatch]);
+
   return (
     <Router>
       <Navbar />
@@ -25,10 +38,19 @@ const App = () => {
           <Route path="/shop" element={<ShopPage />} />
           <Route path="/about-us" element={<AboutUsPage />} />
           <Route path="/wishlist" element={<WishlistPage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route
+            path="/checkout"
+            element={user ? <CheckoutPage /> : <Navigate to="/login" />}
+          />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signin" element={<Signin />} />
+          <Route
+            path="/login"
+            element={user ? <Navigate to="/" /> : <Login />}
+          />
+          <Route
+            path="/signin"
+            element={user ? <Navigate to="/" /> : <Signin />}
+          />
         </Routes>
       </main>
       <Footer />

@@ -24,18 +24,23 @@ const LoginForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   // Handle form submission
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    dispatch(login({ email, password }))
-      .then((resultAction) => {
-        unwrapResult(resultAction);
-        toast.success("Login successful"); // Notify success
-        navigate("/"); // Redirect to home page on success
-      })
-      .catch((error) => {
-        toast.error(error.message || "Login failed"); // Notify failure
-      });
+    try {
+      const resultAction = await dispatch(login({ email, password }));
+      const result = unwrapResult(resultAction);
+
+      if (result && result.username) {
+        toast.success(`Welcome, ${result.username}`);
+        navigate("/");
+      } else {
+        toast.error("Failed to retrieve username.");
+      }
+    } catch (error) {
+      toast.error(error.message || "Login failed");
+    }
   };
+
 
   return (
     <Form onSubmit={onSubmit}>

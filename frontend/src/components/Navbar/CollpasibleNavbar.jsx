@@ -1,4 +1,3 @@
-// CollapsibleNavbar.jsx
 import {
   Navbar,
   Container,
@@ -6,9 +5,11 @@ import {
   NavDropdown,
   Offcanvas,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { FaSearch, FaHeart, FaUser } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
+import { logout } from "../../features/auth/authSlice";
 import "./Navbar.css";
 
 /**
@@ -16,6 +17,13 @@ import "./Navbar.css";
  * Contains the brand, navigation links, and icons for search, user, cart, and wishlist.
  */
 const CollapsibleNavbar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/"); // Redirect to the homepage after logging out
+  };
   return (
     <Navbar
       expand="lg"
@@ -40,11 +48,8 @@ const CollapsibleNavbar = () => {
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="d-lg-none gap-3 flex-row">
-              <Nav.Link href="">
+              <Nav.Link as="span">
                 <FaSearch />
-              </Nav.Link>
-              <Nav.Link as={Link} to="/login">
-                <FaUser />
               </Nav.Link>
               <Nav.Link as={Link} to="/cart">
                 <FaCartShopping />
@@ -52,6 +57,25 @@ const CollapsibleNavbar = () => {
               <Nav.Link as={Link} to="/wishlist">
                 <FaHeart />
               </Nav.Link>
+              <NavDropdown
+                title={user?.username ? user.username : <FaUser />}
+                id="user-dropdown"
+              >
+                {user?.username ? (
+                  <NavDropdown.Item onClick={handleLogout}>
+                    Logout
+                  </NavDropdown.Item>
+                ) : (
+                  <>
+                    <NavDropdown.Item as={Link} to="/login">
+                      Login
+                    </NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/register">
+                      Sign Up
+                    </NavDropdown.Item>
+                  </>
+                )}
+              </NavDropdown>
             </Nav>
             <Nav className="gap-3 justify-content-end flex-grow-1 pe-3">
               <Nav.Link as={Link} to="/">
@@ -77,12 +101,9 @@ const CollapsibleNavbar = () => {
             </Nav>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
-        <Nav className="gap-2 nav-icons d-none d-lg-flex">
-          <Nav.Link href="">
+        <Nav className="gap-2 d-none d-lg-flex nav-icons">
+          <Nav.Link as="span">
             <FaSearch />
-          </Nav.Link>
-          <Nav.Link as={Link} to="/login">
-            <FaUser />
           </Nav.Link>
           <Nav.Link as={Link} to="/cart">
             <FaCartShopping />
@@ -90,6 +111,23 @@ const CollapsibleNavbar = () => {
           <Nav.Link as={Link} to="/wishlist">
             <FaHeart />
           </Nav.Link>
+          <NavDropdown
+            title={user?.username ? user.username : <FaUser />}
+            id="user-dropdown"
+          >
+            {user?.username ? (
+              <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+            ) : (
+              <>
+                <NavDropdown.Item as={Link} to="/login">
+                  Login
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/register">
+                  Sign Up
+                </NavDropdown.Item>
+              </>
+            )}
+          </NavDropdown>
         </Nav>
       </Container>
     </Navbar>
