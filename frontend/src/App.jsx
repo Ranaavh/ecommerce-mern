@@ -41,6 +41,7 @@ const App = () => {
             path="/wishlist"
             element={user ? <WishlistPage /> : <Navigate to="/login" />}
           />
+
           <Route
             path="/checkout"
             element={user ? <CheckoutPage /> : <Navigate to="/login" />}
