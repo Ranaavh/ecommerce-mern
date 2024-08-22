@@ -37,7 +37,10 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/shop" element={<ShopPage />} />
           <Route path="/about-us" element={<AboutUsPage />} />
-          <Route path="/wishlist" element={<WishlistPage />} />
+          <Route
+            path="/wishlist"
+            element={user ? <WishlistPage /> : <Navigate to="/login" />}
+          />
           <Route
             path="/checkout"
             element={user ? <CheckoutPage /> : <Navigate to="/login" />}
@@ -48,7 +51,7 @@ const App = () => {
             element={user ? <Navigate to="/" /> : <Login />}
           />
           <Route
-            path="/signin"
+            path="/register"
             element={user ? <Navigate to="/" /> : <Signin />}
           />
         </Routes>

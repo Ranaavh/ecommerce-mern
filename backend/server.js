@@ -3,7 +3,6 @@ const connectDB = require("./config/db");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const authRoutes = require("./routes/authRoutes");
-const validateRoutes = require("./routes/validateRoutes");
 
 dotenv.config();
 
@@ -18,7 +17,6 @@ app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoutes);
-app.use("/api/auth/validate", validateRoutes); // Use the validation routes
 
 // Global Error Handler
 app.use((err, req, res, next) => {
