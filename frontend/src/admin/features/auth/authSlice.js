@@ -1,10 +1,12 @@
-// src/admin/features/auth/authSlice.js
 import { createSlice } from "@reduxjs/toolkit";
+
+// Get token from localStorage if it exists
+const token = localStorage.getItem("token");
 
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    user: null, // Update this to reflect admin user
+    user: token ? { token } : null, // If token exists, set user
   },
   reducers: {
     login: (state, action) => {

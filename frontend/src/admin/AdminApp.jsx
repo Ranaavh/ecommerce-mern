@@ -6,38 +6,63 @@ import ProductList from "./pages/ProductList";
 import AddProduct from "./pages/AddProduct";
 import Login from "./pages/Login";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "./features/auth/authSlice"; // Ensure this action is defined
+import { logout } from "./features/auth/authSlice";
+import PrivateRoute from "./components/PrivateRoute";
 import "./admin.css";
 
 const AdminApp = () => {
-  const { user } = useSelector((state) => state.auth); // Assuming you have user authentication state
-
+  const { user } = useSelector((state) => state.auth); // Access user state from Redux
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(logout()); // Logout action
-    window.location.href = "/admin/login"; // Redirect to login after logout
+    dispatch(logout());
+    localStorage.removeItem("token");
+    window.location.href = "/admin/login";
   };
 
-  return !user ? (
+  // Conditionally render based on user authentication
+  return user ? (
     <Routes>
+      {/* Public route for login */}
       <Route path="/login" element={<Login />} />
-      <Route path="*" element={<Navigate to="/admin/login" />} />
+
+      {/* Protected routes */}
+      <Route
+        path="/dashboard"
+        element={
+          <PrivateRoute>
+            <div className="d-flex" id="wrapper">
+              <Sidebar />
+              <div id="page-content-wrapper">
+                <Header onLogout={handleLogout} />
+                <AdminDashboard />
+              </div>
+            </div>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/products"
+        element={
+          <PrivateRoute>
+            <ProductList />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/add-product"
+        element={
+          <PrivateRoute>
+            <AddProduct />
+          </PrivateRoute>
+        }
+      />
+
+      {/* Redirect all unknown routes to dashboard */}
+      <Route path="*" element={<Navigate to="/admin/dashboard" />} />
     </Routes>
   ) : (
-    <div className="d-flex" id="wrapper">
-      <Sidebar />
-      <div id="page-content-wrapper">
-        <Header onLogout={handleLogout} />{" "}
-        {/* Pass the logout function to Header */}
-        <Routes>
-          <Route path="/dashboard" element={<AdminDashboard />} />
-          <Route path="/products" element={<ProductList />} />
-          <Route path="/add-product" element={<AddProduct />} />
-          <Route path="*" element={<Navigate to="/admin/dashboard" />} />
-        </Routes>
-      </div>
-    </div>
+    <Navigate to="/admin/login" />
   );
 };
 

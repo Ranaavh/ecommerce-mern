@@ -1,11 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../features/auth/authSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -16,7 +19,13 @@ const Login = () => {
         password,
       });
 
+      // Store token in localStorage
       localStorage.setItem("token", res.data.token);
+
+      // Dispatch login action to set user state
+      dispatch(login({ token: res.data.token, email: res.data.email }));
+
+      // Redirect to dashboard
       alert("Login successful");
       navigate("/admin/dashboard");
     } catch (err) {
