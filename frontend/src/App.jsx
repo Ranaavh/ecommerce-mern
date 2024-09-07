@@ -19,6 +19,7 @@ import Signin from "./components/Signin/Signin";
 import Footer from "./components/Footer/Footer";
 import "./App.css";
 import { ToastContainer } from "react-toastify";
+import AdminApp from "./admin/AdminApp";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -28,9 +29,12 @@ const App = () => {
     dispatch(validateToken()); // Validate token on app load
   }, [dispatch]);
 
+  // Check if the current route is part of the admin section
+  const isAdminRoute = window.location.pathname.startsWith("/admin");
+
   return (
     <Router>
-      <Navbar />
+      {!isAdminRoute && <Navbar />}
       <ToastContainer />
       <main>
         <Routes>
@@ -41,7 +45,6 @@ const App = () => {
             path="/wishlist"
             element={user ? <WishlistPage /> : <Navigate to="/login" />}
           />
-
           <Route
             path="/checkout"
             element={user ? <CheckoutPage /> : <Navigate to="/login" />}
@@ -55,9 +58,11 @@ const App = () => {
             path="/register"
             element={user ? <Navigate to="/" /> : <Signin />}
           />
+          {/* Admin Routes */}
+          <Route path="/admin/*" element={<AdminApp />} />
         </Routes>
       </main>
-      <Footer />
+      {!isAdminRoute && <Footer />}
     </Router>
   );
 };
