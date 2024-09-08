@@ -26,7 +26,7 @@ const ProductList = () => {
         .delete(`/api/products/${id}`)
         .then(() => {
           alert("Product deleted");
-          setProducts(products.filter((product) => product._id !== id));
+          setProducts(products.filter((product) => product._id !== id)); // Use _id if that's what MongoDB uses
         })
         .catch((error) => {
           console.error("Error deleting product:", error);
