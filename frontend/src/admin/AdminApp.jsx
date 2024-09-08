@@ -34,7 +34,7 @@ const AdminApp = () => {
             path="/dashboard"
             element={
               <PrivateRoute>
-                <div className="d-flex" id="wrapper">
+                <div className="d-flex">
                   <Sidebar />
                   <div id="page-content-wrapper">
                     <Header />

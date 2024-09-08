@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 const authRoutes = require("./routes/authRoutes");
 const validateRoutes = require("./routes/validateRoutes");
 const adminAuthRoutes = require("./routes/adminAuthRoutes"); // Import admin auth routes
+const productRoutes = require("./routes/productRoutes");
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/auth/validate", validateRoutes); // Use the validation routes
 app.use("/api/admin", adminAuthRoutes); // Use admin auth routes
+app.use("/api/products", productRoutes);
 
 // Global Error Handler
 app.use((err, req, res, next) => {

@@ -1,76 +1,25 @@
-// components/NewArrivals/NewArrivals.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./NewArrivals.scss";
 
-const products = [
-  {
-    id: 1,
-    image: "images/product/product-1.jpg",
-    label: "New",
-    title: "Piqué Biker Jacket",
-    price: "$67.24",
-    rating: 3,
-  },
-  {
-    id: 2,
-    image: "images/product/product-2.jpg",
-    title: "Piqué Biker Jacket",
-    price: "$67.24",
-    rating: 2,
-  },
-  {
-    id: 3,
-    image: "images/product/product-3.jpg",
-    label: "Sale",
-    title: "Multi-pocket Chest Bag",
-    price: "$43.48",
-    rating: 4,
-  },
-  {
-    id: 4,
-    image: "images/product/product-4.jpg",
-    label: "Sale",
-    title: "Multi-pocket Chest Bag",
-    price: "$43.48",
-    rating: 4,
-  },
-  {
-    id: 5,
-    image: "images/product/product-5.jpg",
-    label: "New",
-    title: "Piqué Biker Jacket",
-    price: "$67.24",
-    rating: 3,
-  },
-  {
-    id: 6,
-    image: "images/product/product-6.jpg",
-    title: "Piqué Biker Jacket",
-    price: "$67.24",
-    rating: 4,
-  },
-  {
-    id: 7,
-    image: "images/product/product-7.jpg",
-    label: "Sale",
-    title: "Multi-pocket Chest Bag",
-    price: "$43.48",
-    rating: 4,
-  },
-  {
-    id: 8,
-    image: "images/product/product-8.jpg",
-    label: "Sale",
-    title: "Multi-pocket Chest Bag",
-    price: "$43.48",
-    rating: 4,
-  },
-];
-
 const NewArrivals = () => {
+  const [products, setProducts] = useState([]);
   const [activeFilter, setActiveFilter] = useState("*");
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get("/api/products"); // Adjust the URL to your backend endpoint
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const handleFilterClick = (filter) => {
     setActiveFilter(filter);
