@@ -5,64 +5,67 @@ import AdminDashboard from "./pages/AdminDashboard";
 import ProductList from "./pages/ProductList";
 import AddProduct from "./pages/AddProduct";
 import Login from "./pages/Login";
-import { useSelector, useDispatch } from "react-redux";
-import { logout } from "./features/auth/authSlice";
+import { useSelector } from "react-redux"; // Remove useDispatch and useNavigate as they aren't used here
 import PrivateRoute from "./components/PrivateRoute";
 import "./admin.css";
 
 const AdminApp = () => {
   const { user } = useSelector((state) => state.auth); // Access user state from Redux
-  const dispatch = useDispatch();
 
-  const handleLogout = () => {
-    dispatch(logout());
-    localStorage.removeItem("token");
-    window.location.href = "/admin/login";
-  };
+  // Redirect to dashboard after successful login if the user is on the login page
+  if (user && window.location.pathname === "/admin/login") {
+    return <Navigate to="/admin/dashboard" />;
+  }
 
-  // Conditionally render based on user authentication
-  return user ? (
+  // If the user is not logged in, redirect them to the login page
+  if (!user && window.location.pathname !== "/admin/login") {
+    return <Navigate to="/admin/login" />;
+  }
+
+  return (
     <Routes>
       {/* Public route for login */}
       <Route path="/login" element={<Login />} />
 
-      {/* Protected routes */}
-      <Route
-        path="/dashboard"
-        element={
-          <PrivateRoute>
-            <div className="d-flex" id="wrapper">
-              <Sidebar />
-              <div id="page-content-wrapper">
-                <Header onLogout={handleLogout} />
-                <AdminDashboard />
-              </div>
-            </div>
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/products"
-        element={
-          <PrivateRoute>
-            <ProductList />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/add-product"
-        element={
-          <PrivateRoute>
-            <AddProduct />
-          </PrivateRoute>
-        }
-      />
+      {/* Protected routes - only accessible if logged in */}
+      {user && (
+        <>
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <div className="d-flex" id="wrapper">
+                  <Sidebar />
+                  <div id="page-content-wrapper">
+                    <Header />
+                    <AdminDashboard />
+                  </div>
+                </div>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/products"
+            element={
+              <PrivateRoute>
+                <ProductList />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/add-product"
+            element={
+              <PrivateRoute>
+                <AddProduct />
+              </PrivateRoute>
+            }
+          />
+        </>
+      )}
 
-      {/* Redirect all unknown routes to dashboard */}
-      <Route path="*" element={<Navigate to="/admin/dashboard" />} />
+      {/* Catch-all route for unknown paths */}
+      <Route path="*" element={<Navigate to="/admin/login" />} />
     </Routes>
-  ) : (
-    <Navigate to="/admin/login" />
   );
 };
 

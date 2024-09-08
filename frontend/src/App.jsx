@@ -17,9 +17,9 @@ import ShopPage from "./Pages/ShopPage";
 import Login from "./components/Login/Login";
 import Signin from "./components/Signin/Signin";
 import Footer from "./components/Footer/Footer";
-import "./App.css";
 import { ToastContainer } from "react-toastify";
 import AdminApp from "./admin/AdminApp";
+import "./App.css";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -58,6 +58,7 @@ const App = () => {
             path="/register"
             element={user ? <Navigate to="/" /> : <Signin />}
           />
+
           {/* Admin Routes */}
           <Route path="/admin/*" element={<AdminApp />} />
         </Routes>

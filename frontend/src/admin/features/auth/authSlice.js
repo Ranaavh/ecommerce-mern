@@ -11,9 +11,11 @@ const authSlice = createSlice({
   reducers: {
     login: (state, action) => {
       state.user = action.payload; // Store admin user details
+      localStorage.setItem("token", action.payload.token); // Save token to localStorage
     },
     logout: (state) => {
       state.user = null;
+      localStorage.removeItem("token"); // Remove token from localStorage
     },
   },
 });
