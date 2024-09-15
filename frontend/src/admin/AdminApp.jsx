@@ -36,19 +36,19 @@ const AdminApp = () => {
     }
   }, [dispatch]);
 
- useEffect(() => {
-   if (user) {
-     // Redirect authenticated users away from the login page
-     if (location.pathname === "/admin/login") {
-       navigate("/admin/dashboard", { replace: true });
-     }
-   } else {
-     // Redirect unauthenticated users to login from any protected route
-     if (location.pathname !== "/admin/login") {
-       navigate("/admin/login", { replace: true });
-     }
-   }
- }, [user, navigate, location.pathname]);
+useEffect(() => {
+  if (user) {
+    // If authenticated and trying to access login, redirect to dashboard
+    if (location.pathname === "/admin/login") {
+      navigate("/admin/dashboard", { replace: true });
+    }
+  } else {
+    // If not authenticated and trying to access protected routes, redirect to login
+    if (location.pathname !== "/admin/login") {
+      navigate("/admin/login", { replace: true });
+    }
+  }
+}, [user, navigate, location.pathname]);
 
   return (
     <Routes>
@@ -59,7 +59,7 @@ const AdminApp = () => {
       <Route
         path="/dashboard"
         element={
-          <PrivateRoute>
+          <PrivateRoute key={user ? "loggedIn" : "loggedOut"}>
             <div className="d-flex">
               <Sidebar />
               <div id="page-content-wrapper">
@@ -70,10 +70,11 @@ const AdminApp = () => {
           </PrivateRoute>
         }
       />
+
       <Route
         path="/products"
         element={
-          <PrivateRoute>
+          <PrivateRoute key={user ? "loggedIn" : "loggedOut"}>
             <div className="d-flex">
               <Sidebar />
               <div id="page-content-wrapper">
@@ -84,10 +85,11 @@ const AdminApp = () => {
           </PrivateRoute>
         }
       />
+
       <Route
         path="/add-product"
         element={
-          <PrivateRoute>
+          <PrivateRoute key={user ? "loggedIn" : "loggedOut"}>
             <div className="d-flex">
               <Sidebar />
               <div id="page-content-wrapper">

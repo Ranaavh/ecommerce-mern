@@ -7,13 +7,17 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
+const handleLogout = () => {
+  // Clear token and email from localStorage
+  localStorage.removeItem("token");
+  localStorage.removeItem("email");
 
-    localStorage.removeItem("email");
-    dispatch(logout());
-    navigate("/admin/login");
-  };
+  // Dispatch the logout action to update Redux state
+  dispatch(logout());
+
+  // Wait for state to be updated before navigating
+  navigate("/admin/login", { replace: true });
+};
 
   return (
     <nav className="navbar navbar-light bg-light border-bottom shadow-sm">
