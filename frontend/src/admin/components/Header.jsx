@@ -8,9 +8,11 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    localStorage.removeItem("token");
+
+    localStorage.removeItem("email");
     dispatch(logout());
-    localStorage.removeItem("token"); // Remove token from localStorage
-    navigate("/admin/login"); // Redirect to login page
+    navigate("/admin/login");
   };
 
   return (

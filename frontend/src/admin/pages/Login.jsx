@@ -9,6 +9,7 @@ import "../admin.css"; // Ensure this file contains your custom styles
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null); // To handle errors
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -21,17 +22,17 @@ const Login = () => {
         password,
       });
 
-      // Store token in localStorage
+      // Store token and email in localStorage
       localStorage.setItem("token", res.data.token);
+      localStorage.setItem("email", res.data.email);
 
       // Dispatch login action to set user state
       dispatch(login({ token: res.data.token, email: res.data.email }));
 
-      // Redirect to dashboard
-      alert("Login successful");
+      // Redirect to the dashboard
       navigate("/admin/dashboard");
     } catch (err) {
-      alert("Login failed: " + err.response.data.message);
+      setError(err.response?.data?.message || "Login failed");
     }
   };
 
@@ -41,6 +42,9 @@ const Login = () => {
         <Col md={6} lg={4}>
           <Form onSubmit={handleLogin} className="login-form">
             <h2 className="text-center">Admin Login</h2>
+
+            {error && <div className="alert alert-danger">{error}</div>}
+
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control

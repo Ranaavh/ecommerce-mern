@@ -15,7 +15,7 @@ const AppNavbar = () => {
           Free shipping, 30-day return or refund guarantee.
         </Navbar.Brand>
         <Nav className="gap-2">
-          <Nav.Link as={Link} to="/signin">
+          <Nav.Link as={Link} to="/register">
             SIGN IN
           </Nav.Link>
           <Nav.Link as={Link} to="/faqs">

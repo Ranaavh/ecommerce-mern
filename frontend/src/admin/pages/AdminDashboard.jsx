@@ -1,10 +1,27 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
 import "../admin.css"; // Import the custom CSS file
+
 const ProductList = () => {
+  const [products, setProducts] = useState([]);
+
+  // Fetch products from the backend
+  useEffect(() => {
+    axios
+      .get("/api/products")
+      .then((response) => {
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+      });
+  }, []);
+
   return (
     <div className="d-flex">
       <div className="content">
         <div className="container-fluid">
-          <h1 className="mt-4">Manage Products</h1>
+          <h1 className="mt-4"> Products</h1>
           <table className="table table-striped">
             <thead>
               <tr>
@@ -14,15 +31,23 @@ const ProductList = () => {
               </tr>
             </thead>
             <tbody>
-              {/* Map through products here */}
-              <tr>
-                <td>Product 1</td>
-                <td>$10</td>
-                <td>
-                  <button className="btn btn-warning btn-sm">Edit</button>
-                  <button className="btn btn-danger btn-sm">Delete</button>
-                </td>
-              </tr>
+              {products.length > 0 ? (
+                products.map((product) => (
+                  <tr key={product._id}>
+                    <td>{product._id}</td>
+                    <td>
+                      <img src={product.image} alt={product.title} width="50" />
+                    </td>
+                    <td>{product.title}</td>
+                    <td>{product.price}</td>
+                    <td>{product.rating}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="6">No products found</td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

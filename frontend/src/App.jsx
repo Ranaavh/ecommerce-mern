@@ -5,6 +5,7 @@ import {
   Route,
   Routes,
   Navigate,
+  useLocation,
 } from "react-router-dom";
 import { validateToken } from "./features/auth/authSlice";
 import Navbar from "./components/Navbar/Navbar";
@@ -21,26 +22,30 @@ import { ToastContainer } from "react-toastify";
 import AdminApp from "./admin/AdminApp";
 import "./App.css";
 
-const App = () => {
+const AppContent = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith("/admin");
 
   useEffect(() => {
     dispatch(validateToken()); // Validate token on app load
   }, [dispatch]);
 
-  // Check if the current route is part of the admin section
-  const isAdminRoute = window.location.pathname.startsWith("/admin");
-
   return (
-    <Router>
+    <>
+      {/* Conditionally render Navbar and Footer based on admin route */}
       {!isAdminRoute && <Navbar />}
       <ToastContainer />
       <main>
         <Routes>
+          {/* Public Routes */}
           <Route path="/" element={<HomePage />} />
           <Route path="/shop" element={<ShopPage />} />
           <Route path="/about-us" element={<AboutUsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+
+          {/* Protected Routes */}
           <Route
             path="/wishlist"
             element={user ? <WishlistPage /> : <Navigate to="/login" />}
@@ -49,21 +54,33 @@ const App = () => {
             path="/checkout"
             element={user ? <CheckoutPage /> : <Navigate to="/login" />}
           />
-          <Route path="/contact" element={<ContactPage />} />
+
+          {/* Auth Routes */}
           <Route
             path="/login"
-            element={user ? <Navigate to="/" /> : <Login />}
+            element={!user ? <Login /> : <Navigate to="/" />}
           />
           <Route
             path="/register"
-            element={user ? <Navigate to="/" /> : <Signin />}
+            element={!user ? <Signin /> : <Navigate to="/" />}
           />
 
           {/* Admin Routes */}
           <Route path="/admin/*" element={<AdminApp />} />
+
+          {/* Fallback Route */}
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </main>
       {!isAdminRoute && <Footer />}
+    </>
+  );
+};
+
+const App = () => {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 };
