@@ -41,7 +41,6 @@ const LoginForm = () => {
     }
   };
 
-
   return (
     <Form onSubmit={onSubmit}>
       {/* Email input field */}
@@ -78,7 +77,7 @@ const LoginForm = () => {
       {/* Footer buttons for account creation and password recovery */}
       <Row>
         <Col className="footer-buttons">
-          <Button as={Link} to="/signin" className="create-button">
+          <Button as={Link} to="/register" className="create-button">
             Create Account
           </Button>
           <Button as={Link} to="/forgot-password" className="forgot-button">
